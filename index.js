@@ -845,14 +845,14 @@ function getAge(birthDate) {
    welcomeContainer.classList.add("phone-welcome--active")
    createStarBackground(phone) 
    createStarBackground(document.querySelector(".phone-proj-star-bg")) 
-   document.querySelector(".phone-body").style.display = "contents"
+   
    
    setTimeout(() => {
 phoneHead.querySelectorAll("canvas")[1].style.transition = " opacity 400ms"
 phoneHead.querySelectorAll("canvas")[1].style.opacity = "0"
 phone.classList.add("phone-hill--active")
 setTimeout(() => {
-// document.querySelector(".phone-body").style.display = "contents"
+document.querySelector(".phone-body").style.display = "contents"
 }, 3000)
    }, 3000)
   }
