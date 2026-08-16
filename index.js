@@ -1,3 +1,4 @@
+let isNotificationAlive = false;
 function createStarField(container, options = {}) {
   // allow passing a selector string or an element
   const el = typeof container === 'string' ? document.querySelector(container) : container;
@@ -243,7 +244,9 @@ function createStarBackground(container, options = {}) {
 function headAnimation() {
     document.querySelector(".hill-image").classList.add("hill-image--load")
 document.querySelector(".layout-desktop ._profile").classList.add("_profile--active");
-
+setTimeout(() => {
+document.querySelector(".pc-body-b").style.display = "contents"
+}, 2200)
 }
 
 function welcomeLoad() {
@@ -263,15 +266,168 @@ function welcomeLoad() {
   driftAngle: { x: -1, y: 0.3 }
 });
 setTimeout(() => {
+  
 loadPhase1()
 }, 400)
 }
 window.addEventListener("load" , () => {
-  setTimeout(() => {
-    aggressiveScroll(document.querySelector(".layout-desktop") , 0 , 4000)  
-    buildBody(false)
-    welcomeLoad()
+    document.querySelector(".layout-phone").addEventListener("scroll" , (e) => {
+    let target = e.target;
+    let scrollVal = target.scrollTop;
+      let headH = document.querySelector(".phone-head").clientHeight - 1;
+      let aboutMe = document.querySelector(".phone-about-me");
+if (scrollVal < (headH * 0.7)) {
+  let phoneProjects = document.querySelector(".phone-projects");
+  phoneProjects.classList
+  .remove("phone-projects--active")
 
+  phoneProjects.querySelector(".phone-projs").style.overflow = "hidden";
+  phoneProjects.querySelector(".phone-projs").scrollTop = "0"
+}
+else if (scrollVal >= (headH * 0.7) && 
+scrollVal < (headH * 1.6)) {
+  
+  document.querySelector(".phone-projs").style.removeProperty("overflow")
+  let part = document.querySelector(".phone-projects");
+  if (!part.classList.contains("phone-projects--active")) {
+    part.classList.add("phone-projects--active")
+
+    
+    aggressiveScroll(target , headH , 1000)
+  }
+  document.querySelector(".phone-about-me").classList
+  .remove("_phone-about--active")
+}
+else if (scrollVal >= headH * 1.6
+  && scrollVal < ((headH * 1.8) + aboutMe.clientHeight - 1)
+) {
+let about =  aboutMe
+if (!about.classList.contains("_phone-about--active")) {
+  aggressiveScroll(target , headH * 2 , 1000)
+  about.classList.add("_phone-about--active")
+}
+let contact = document.querySelector(".phone-contact");
+ contact.classList.remove("phone-contact--active")
+ contact.querySelector("video").pause();
+}
+else if (scrollVal > ((headH * 1.8) + aboutMe.clientHeight - 1)) {
+let contact = document.querySelector(".phone-contact");
+if (!contact.classList.contains("phone-contact--active")) {
+  contact.classList.add("phone-contact--active")
+  aggressiveScroll(target , (headH * 2) + aboutMe.clientHeight , 1000)
+  contact.querySelector("video").play();
+}
+
+}
+
+
+  })
+
+
+  // r
+  document.querySelector(".layout-desktop")
+  .addEventListener("scroll" , (e) => {
+
+    let head = document.querySelector(".pc-head");
+    let scrollVal = e.target.scrollTop;
+    let target = e.target;
+    if (scrollVal < head.clientHeight) {
+      
+let section = document.querySelector(".pc-projects");
+section.classList.remove("_projects--active")
+    }
+    else if (scrollVal >= head.clientHeight &&
+      scrollVal < head.clientHeight * 1.8
+    ) {
+    
+        
+      
+  let section = document.querySelector(".pc-projects");
+  if (!section.classList.contains("_projects--active")) {
+    section.classList.add("_projects--active")
+aggressiveScroll(e.target , head.clientHeight , 1000)
+}
+document.querySelector(".pc-about-me").classList.remove("_about-me--active")
+}
+else if (scrollVal >= head.clientHeight * 1.8 
+  && scrollVal < head.clientHeight * 2.8
+)    {
+ let aboutMe =  document.querySelector(".pc-about-me");
+ if (!aboutMe.classList.contains("_about-me--active")) {
+
+   aboutMe.classList.add("_about-me--active")
+   let val = head.clientHeight * 2;
+   aggressiveScroll(e.target , val , 1000)
+  }
+  let sect = document.querySelector(".pc-contact-me");
+  sect.classList.remove("_contact--active")
+  sect.querySelector("video").pause()
+}
+else if (scrollVal >= head.clientHeight * 2.8
+) {
+let sect = document.querySelector(".pc-contact-me");
+if (!sect.classList.contains("_contact--active")) {
+  aggressiveScroll(e.target , head.clientHeight * 3 , 1000)
+  sect.classList.add("_contact--active")
+  sect.querySelector("video").play()
+}
+}
+  })
+const container = document.querySelector(".phone-projs");
+const projects = container.querySelectorAll(".phone-project"); // adjust selector
+
+// Figure out if you're snapping to 'start' or 'center'
+// (match this to your CSS scroll-snap-align value)
+const SNAP_ALIGN = "start"; // or "center"
+
+function updateSnappedProject() {
+  const containerRect = container.getBoundingClientRect();
+
+  // The point we're comparing against (relative to container)
+  const snapPoint =
+    SNAP_ALIGN === "center"
+      ? containerRect.top + containerRect.height / 2
+      : containerRect.top;
+
+  let closest = null;
+  let closestDistance = Infinity;
+
+  projects.forEach((proj) => {
+    const rect = proj.getBoundingClientRect();
+    const projPoint =
+      SNAP_ALIGN === "center" ? rect.top + rect.height / 2 : rect.top;
+
+    const distance = Math.abs(projPoint - snapPoint);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closest = proj;
+    }
+  });
+
+  projects.forEach((proj) => proj.classList.remove("_phone-project--active"));
+  if (closest) closest.classList.add("_phone-project--active");
+}
+
+container.addEventListener("scrollend", updateSnappedProject);
+
+// Run once on load in case a project starts snapped
+updateSnappedProject();
+  setTimeout(() => {
+    
+    welcomeLoad()
+  let projectsSection = document.querySelector(".pc-projects-star-bg");
+          createStarBackground(projectsSection)
+createStarBackground(document.querySelector(".pc-about-me"))
+createStarField(document.querySelector(".pc-about-me"))
+  createStarBackground(document.querySelector(".pc-contact-content"))
+
+  loadPhone()
+let ageValue = getAge(new Date(2008 , 1 , 15));
+
+document.querySelectorAll("._age-value").forEach(e => 
+  e.textContent = ageValue
+)
 }, 100)
     
 })
@@ -308,7 +464,7 @@ createStarField(document.querySelector(".pc-head-star-shooting") , {
     shootingStarChance: 0.7
    })
     setTimeout(() => {
-      
+      document.querySelector(".hill-image").style.opacity = "1";
         toHead();
     
         setTimeout(() => {
@@ -321,9 +477,8 @@ createStarField(document.querySelector(".pc-head-star-shooting") , {
 }
 let snapScroll = true;
 function buildBody(temp = false) {
-let ageValue = getAge(new Date(2008 , 1 , 15));
 
-  document.querySelector(".hill-image").style.opacity = "1";
+  
   let body = ` <section class="pc-about pc-projects">
 <section class="pc-projects-star-bg"></section>
             <section class="pc-projects-bg">
@@ -536,66 +691,8 @@ I also create assets for the websites I make, such as icons, logos, and a bit of
 
           document.querySelector(".layout-desktop")
           .append(...appendElements.body.childNodes);
-          let projectsSection = document.querySelector(".pc-projects-star-bg");
-          createStarBackground(projectsSection)
-createStarBackground(document.querySelector(".pc-about-me"))
-createStarField(document.querySelector(".pc-about-me"))
-  createStarBackground(document.querySelector(".pc-contact-content"))
-
-
-document.querySelectorAll("._age-value").forEach(e => 
-  e.textContent = ageValue
-)
- document.querySelector(".layout-desktop")
-  .addEventListener("scroll" , (e) => {
-
-    let head = document.querySelector(".pc-head");
-    let scrollVal = e.target.scrollTop;
-    let target = e.target;
-    if (scrollVal < head.clientHeight) {
-      
-let section = document.querySelector(".pc-projects");
-section.classList.remove("_projects--active")
-    }
-    else if (scrollVal >= head.clientHeight &&
-      scrollVal < head.clientHeight * 1.8
-    ) {
-    
         
-      
-  let section = document.querySelector(".pc-projects");
-  if (!section.classList.contains("_projects--active")) {
-    section.classList.add("_projects--active")
-aggressiveScroll(e.target , head.clientHeight , 1000)
-}
-document.querySelector(".pc-about-me").classList.remove("_about-me--active")
-}
-else if (scrollVal >= head.clientHeight * 1.8 
-  && scrollVal < head.clientHeight * 2.8
-)    {
- let aboutMe =  document.querySelector(".pc-about-me");
- if (!aboutMe.classList.contains("_about-me--active")) {
-
-   aboutMe.classList.add("_about-me--active")
-   let val = head.clientHeight * 2;
-   aggressiveScroll(e.target , val , 1000)
-  }
-  let sect = document.querySelector(".pc-contact-me");
-  sect.classList.remove("_contact--active")
-  sect.querySelector("video").pause()
-}
-else if (scrollVal >= head.clientHeight * 2.8
-) {
-let sect = document.querySelector(".pc-contact-me");
-if (!sect.classList.contains("_contact--active")) {
-  aggressiveScroll(e.target , head.clientHeight * 3 , 1000)
-  sect.classList.add("_contact--active")
-  sect.querySelector("video").play()
-}
-}
-  })
-  document.querySelector("body").focus()
-}, 4000)
+}, 0)
 }
 
 
@@ -606,39 +703,36 @@ target.closest("._preview-project-image")) {
   let project = target.closest("._project");
 let src = project.querySelector("img").src;
 pcProjectImagePreview(true , src)
-  }
-  else if (target.classList.contains("pc-project-image-view")) {
+phoneImageView(true , src);
+}
+else if (target.classList.contains("_view-image")) {
     pcProjectImagePreview(false)
+    phoneImageView(false);
+
   }
-  else if (target.classList.contains("_media--discord") ||
-target.closest("._media--discord")) {
-    pcSocialView(true , socials.discord , "Username: vancof")
-  }
-  else if (target.classList.contains("_media--insta") ||
-target.closest("._media--insta")) {
-    pcSocialView(true , socials.insta , "Insta ID: vancof")
-  }
-  else if (target.classList.contains("_media--git") ||
-target.closest("._media--git")) {
-    pcSocialView(true , socials.git , "Username: vancof")
-  }
-  else if (target.classList.contains("_media--face")
-  || target.closest("._media--face")) {
-    pcSocialView(true , socials.face , "Facebook: vancof")
-  }
-  else if (target.classList.contains("_media--x")
-  || target.closest("._media--x")) {
-    pcSocialView(true , socials.x , "Twitter (x): vancof")
-  }
-  else if (target.classList.contains("_media--pin") || 
-target.closest("._media--pin")) {
-    pcSocialView(true , socials.pin , "Pinterest: vancof")
-  }
+  else if (target.classList.contains("_social-trigger") || 
+target.closest("._social-trigger")) {
+let button = target.classList.contains("_social-trigger")
+? target : target.closest("._social-trigger");
+socialMenu(true , button.querySelector("modalhidden"));
+}
+else if (target.classList.contains("_social-modal")) {
+  socialMenu(false)
+}
+  else if (target.classList.contains("_copy-value") || 
+target.closest("._copy-value")) {
+  let ele = target.classList.contains("_copy-value") ? 
+target : target.closest("._copy-value");
+  let copyValue = ele.getAttribute("data-value");
+copyToClipboard(copyValue).then(() => {
+  copyNotification(true , ele.getAttribute("data-message") , 2000)
+}).catch(err => {
   
-  else if (target.classList.contains("pc-project-social-view")) {
-    pcSocialView(false)
-  }
-  
+  copyNotification(true , "Failed to copy details" , 2000 , true)
+  console.log(err)
+})
+}
+
 
 })
 function pcProjectImagePreview(state , img) {
@@ -727,70 +821,182 @@ function getAge(birthDate) {
 }
 
 
-let socials = {
-  "discord": {
-    name: "Discord",
-    img: "./disc.png",
-    class: "_social--discord"
-  },
-  "insta": {
-    name: "Instagram",
-    img: "./instacrop.png",
-    class: "_social--insta"
-  },
-  
-  "git": {
-    name: "Github",
-    img: "./github.svg",
-    class: "_social--git"
-  },
-  "face": {
-    
-    name: "Facebook",
-    img: "./facebook.webp",
-    class: "_social--face"
-  },
-  "pin": {
-    name: "Pinterest",
-    img: "./pin.png",
-    class: "_social--pin"
-  },
-  "x": {
-    name: "(Twitter)",
-    img: "./x.svg",
-    class: "_social--x"
-  },
-  
-}
-function pcSocialView(state , social , content) {
-if (state) {
-  let modal = document.querySelector(".pc-project-social-view");
-  if (!modal.classList.contains("pc-project-social-view--deactive")) {
 
-    let img = modal.querySelector("img");
-    img.src = social.img;
-    modal.className = `pc-project-social-view ${social.class}`
-    modal.classList.add("pc-project-social-view--active");
-    modal.querySelector("._social-name").textContent = social.name;
-    modal.querySelector("p").innerHTML = content;
-  }
-  else {
-    setTimeout(() => {
-let img = modal.querySelector("img");
-    img.src = social.img;
-    modal.className = `pc-project-social-view ${social.class}`
-    modal.classList.add("pc-project-social-view--active");
-    modal.querySelector("._social-name").textContent = social.name;
-    modal.querySelector("p").innerHTML = content;
-    }, 400)
-    
-  }
-    return;
-}
-document.querySelector(".pc-project-social-view")
-.classList.add("pc-project-social-view--deactive")
+ 
+  
+  function loadPhone() {
+    let phoneHead = document.querySelector(".phone-head-bg");
+    let phone = document.querySelector(".phone-head");
+   createStarBackground(phoneHead) 
+   createStarField(phoneHead) 
+   createStarField(document.querySelector(".phone-about-bg")) 
+   createStarBackground(document.querySelector(".phone-about-bg")) 
+   let conts = document.querySelectorAll("._phone-about-cont");
+   conts.forEach(c => {
+     createStarBackground(c)
+     createStarField(c)
+    })
+    let contact = document.querySelector(".phone-contact-star");
+    createStarBackground(contact)
+   phoneHead.style.opacity = "1"
+   
+   // loading welcome phases
+   let welcomeContainer = document.querySelector(".phone-welcome");
+   welcomeContainer.classList.add("phone-welcome--active")
+   createStarBackground(phone) 
+   createStarBackground(document.querySelector(".phone-proj-star-bg")) 
+   document.querySelector(".phone-body").style.display = "contents"
+   
+   setTimeout(() => {
+phoneHead.querySelectorAll("canvas")[1].style.transition = " opacity 400ms"
+phoneHead.querySelectorAll("canvas")[1].style.opacity = "0"
+phone.classList.add("phone-hill--active")
 setTimeout(() => {
-document.querySelector(".pc-project-social-view")
-.className = "pc-project-social-view";
-}, 400)
+// document.querySelector(".phone-body").style.display = "contents"
+}, 3000)
+   }, 3000)
+  }
+
+  function socialMenu(state , element) {
+if (state) {
+
+  document.querySelectorAll("._social-modal")
+  .forEach(s => {
+    s.querySelector("._modal").innerHTML = element.innerHTML;
+
+    s.classList.add("_social-modal--active")
+  })
+  return;
+}
+document.querySelectorAll("._social-modal")
+  .forEach(s => {
+    
+    
+    
+    s.classList.add("_social-modal--deactive")
+    setTimeout(() => {
+      
+      s.classList.remove("_social-modal--active")
+      s.classList.remove("_social-modal--deactive")
+      s.querySelector("._modal").innerHTML = "";
+    }, 400)
+  })
+  }
+  
+
+  function phoneImageView(state , img) {
+if (state) {
+
+ let view =  document.querySelector(".phone-image-viewer");
+ view.classList.remove("_social-modal--deactive")
+ view.classList.add("_social-modal--active")
+ view.querySelector("img").src = img;
+  return;
+}
+
+let view =  document.querySelector(".phone-image-viewer");
+    view.classList.add("_social-modal--deactive")
+    setTimeout(() => {
+      
+      view.classList.remove("_social-modal--active")
+      view.classList.remove("_social-modal--deactive")
+      view.querySelector("img").src = ""
+    }, 400)
+
+  }
+
+  function copyToClipboard(text) {
+  return new Promise((resolve, reject) => {
+    // 1. Modern async Clipboard API (Chrome 66+, Firefox 63+, Safari 13.1+)
+    // Requires secure context (HTTPS or localhost)
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(resolve).catch(() => {
+        fallbackCopy(text, resolve, reject);
+      });
+      return;
+    }
+    // 2. Fallback for everything else (HTTP, old browsers, IE9+)
+    fallbackCopy(text, resolve, reject);
+  });
+}
+
+function fallbackCopy(text, resolve, reject) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+
+  // Keep it out of view but still selectable/focusable
+  textarea.style.position = 'fixed';
+  textarea.style.top = '0';
+  textarea.style.left = '-9999px';
+  textarea.setAttribute('readonly', '');
+
+  document.body.appendChild(textarea);
+
+  // iOS Safari needs special selection handling
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isIOS) {
+    const range = document.createRange();
+    range.selectNodeContents(textarea);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    textarea.setSelectionRange(0, text.length);
+  } else {
+    textarea.select();
+  }
+
+  try {
+    const success = document.execCommand('copy'); // deprecated but works IE9+
+    document.body.removeChild(textarea);
+    success ? resolve() : reject(new Error('execCommand copy failed'));
+  } catch (err) {
+    document.body.removeChild(textarea);
+    reject(err);
+  }
+}
+
+function copyNotification(state , message , duration , fail = false) {
+  if (state && message && duration) {
+    
+   
+    
+if (!isNotificationAlive) {
+isNotificationAlive = true;
+    document.querySelectorAll("._copy-notification")
+    .forEach(cn => {
+      if (fail)
+        cn.classList.add("_copy-notification--fail")
+      else 
+        cn.classList.remove("_copy-notification--fail")
+        
+      cn.querySelector("._message").textContent = message;
+      cn.classList.add("_copy-notification--active")
+      
+      cn.querySelector("._progress").style.animation = ` notificationBar ${duration + 1200}ms forwards linear`
+      let timerId;
+     timerId = setTimeout(() => {
+        copyNotification(false)
+      isNotificationAlive = false;
+      }, duration + 1200)
+      
+    })
+  }
+  
+    
+
+    return;
+  }
+  document.querySelectorAll("._copy-notification")
+  .forEach(cn => {
+    cn.classList.remove("_copy-notification--active")
+    cn.classList.remove("_copy-notification--fail")
+    setTimeout(() => {
+
+      cn.querySelector("._progress").style.removeProperty("animation")
+      cn.querySelector("._message").innerHTML = ""
+    }, 600)
+    
+  })
+  return;
+  
 }

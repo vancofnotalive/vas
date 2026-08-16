@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vancof</title>
     <style>
 * {
     margin: 0;
@@ -15,10 +15,9 @@
 }
 
 body {
-    overflow-x: hidden;
-    overflow-y: scroll;
+overflow: hidden;
 background: rgb(83, 105, 154);    
-   
+   height: 100svh !important;
     --circle_radius: calc(100dvh + 100dvw);
    
 }
@@ -28,7 +27,7 @@ background: rgb(83, 105, 154);
     }
 
     .layout-phone {
-        display: contents !important;
+        display: flex !important;
     }
 
     /* phone */
@@ -52,9 +51,17 @@ background: rgb(83, 105, 154);
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: var(---page--CH);
+    height: 100svh;
     overflow-y: scroll;
     background: rgb(83, 105, 154);    
+}
+.layout-phone {
+    flex-direction: column;
+    overflow-y: scroll;
+    height: var(---page--CH);
+    width: var(---page--CW);
+    align-items: center;
+    justify-content: flex-start;
 }
 @font-face {
     font-family: "MainFont";
@@ -1105,6 +1112,9 @@ text-indent: 0.6ch;
 color: white;
 transition: 200ms;
 }
+.pc-contact-medias modalhidden {
+    display: none;
+}
 .pc-contact-medias button {
     position: relative;
     display: flex;
@@ -1193,11 +1203,11 @@ border-radius: 10px;
     height: 100%;
     width: 100%;
     background-color: rgb(0, 0, 0 , 0.4);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: +99999;
-    transform: scale(0);
+
     opacity: 0;
     transition: opacity 400ms;
 }
@@ -1231,14 +1241,7 @@ border-radius: 10px;
     color: rgb(77, 96, 169) !important;
 }
 ._social--insta ._social-name {
-     color: #ad074c;
-  background: linear-gradient(90deg, #9c0d0d, #ad0b0b, #bfc219, #d60707);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 6s linear infinite;
- animation: gradientShift 6s linear infinite;
+  
 }
 ._social--git ._social-name {
     color: rgb(34, 34, 36) !important;
@@ -1258,31 +1261,1098 @@ border-radius: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 600;
 }
-.pc-project-social-view--active {
-    transform: scale(1);
-opacity: 1;
+
+.pc-body-b {
+    display: none;
 }
-.pc-project-social-view--deactive {
+
+/* phone ui */
+.phone-head {
+    position: relative;
+    height: 100svh;
+    width: 100svw;
+    overflow: hidden;
+    z-index: +2;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.layout-phone::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: -1%;
+    left: 0;
+    
+    background: linear-gradient(to top , rgb(83, 105, 154) , transparent);
+    z-index: +1;
+}
+.phone-head::after {
+    content: "";
+    height: calc(100% + 1px);
+    width: 100%;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    
+    background: linear-gradient(to top , rgb(83, 105, 154) , transparent);
+    z-index: +3;
+}
+
+.layout-phone::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    
+    background: linear-gradient(to top , rgb(83, 105, 154) , transparent);
+    z-index: +1;
+}
+.phone-hill {
+    position: relative;
+    margin-top: 30svh;
+    height: 80%;
+    width: 100%;
+    transform: translate(0 , 8%) scale(1);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: +3;
+    opacity: 0;
+    
+}
+.phone-hill--active .phone-hill {
+animation: phone-hill--active 1000ms forwards ease-in-out;
+}
+@keyframes phone-hill--active {
+    0% {
+        transform: translate(0, 30%) scale(1);
+        opacity: 0;
+        filter: blur(2px);
+    }
+    100% {
+        
+        transform: translate(0, 20%) scale(1.050);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    
+    
+}
+
+.phone-hill::after {
+    content: "";
+position: absolute;
+bottom: 0;
+left: 0;
+height: 100%;
+width: 200%;
+transform: translate(-5% , 0);
+/* background: linear-gradient(to bottom , rgb(83, 105, 154 , 1) , transparent); */
+background: linear-gradient(to top , white, transparent);
+opacity: 1;
+z-index: -1;
+}
+
+.phone-hill img {
+    height: 100%;
+    min-width: 100%;
+}
+.phone-welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(83, 105, 154);
+    z-index: +99;
+}
+.phone-head-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    z-index: +101;
+    transition: 400ms;
     opacity: 0;
 }
+.phone-welcome h1 {
+    position: absolute;
+    text-align: center;
+    font-family: "OT";
+    font-size: calc((100svh + 100svw) / 25);
+    
+    letter-spacing: calc((100svh + 100svw) / 150);
+    opacity: 0;
+    transform: scale(0.5) translate( 0 , 100%);
+    transition: 400ms;
+    color: #ffffff;
+  background: linear-gradient(90deg, #b6b5b5, #e7e7e7, #f8f8f8, #bebebe);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s linear infinite;
+ animation: gradientShift 6s linear infinite;
+}
+.phone-welcome .phone-p2 {
+    font-size: calc((100svh + 100svw) / 35);
+    font-family: "MainFont";
+    
+    letter-spacing: calc((100svh + 100svw) / 500);
+}
+.phone-welcome--active {
+    transition: 1000ms;
+    transition-delay: 3000ms;
+ opacity: 0;   
+}
+.phone-welcome--active .phone-p1 {
+    transition-delay: 400ms;
+    opacity: 1;
+    transform: scale(1) translate(0 , 0);
+    animation: phoneWelcomeP1Go 600ms 1600ms forwards;
+}
+.phone-welcome--active .phone-p2 {
+    transition-delay: 1800ms;
+    opacity: 1;
+    transform: scale(1) translate(0 , 0);
+    animation: phoneWelcomeP2Go 600ms 2800ms forwards;
+}
+@keyframes phoneWelcomeP1Go {
+    0% {
+        
+        opacity: 1;
+        transform: scale(1) translate(0 , 0);
+    }    
+    100% {
+        
+        opacity: 0;
+        transform: scale(0.8) translate(0 , -100%);
+}
+}
+@keyframes phoneWelcomeP2Go {
+    0% {
+        
+        opacity: 1;
+        transform: scale(1) translate(0 , 0);
+    }    
+    100% {
+        
+        opacity: 0;
+        transform: scale(0.8) translate(0 , 0%);
+}
+}
+.phone-head-profile {
+    position: absolute;
+    bottom: 30svh;
+    opacity: 0;
+    
+    
+    z-index: +1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    align-self: center;
+    height: 30svh;
+    
+}
+.phone-hill--active .phone-head-profile {
+    opacity: 0;
+    animation: phone-profile--show 1200ms forwards 600ms ease-in-out;
+}
+@keyframes phone-profile--show {
+    0% {
+        opacity: 0;
+        bottom: 30svh;
+        
+        transform: rotate(5deg); 
+    }
+    100% {
+        opacity: 1;
+        
+        bottom: 60svh;
+        transform: rotate(0deg); 
+    }
+}
+@keyframes phone-profile-img--shift {
+    0% {
+        left: 50%;
+        transform: translate(-50% , 0) scale(1.2);
+    }
+    100% {
+        
+        
+        left: 0%;
+        transform: translate(0% , 0);
+    }
+}
+@keyframes phone-profile-sect--shift {
+    0% {
+        opacity: 0;
+        transform: translate(-25% , 0) scale(0.9);
+    }
+    100% {
+        
+        transform: translate(0% , 0) scale(1);
+        opacity: 1;
+    }
+}
+.phone-hill--active .phone-head-profile div {
+animation: phone-profile-img--shift 600ms forwards 1600ms ease-in-out;
+}
+.phone-hill--active .phone-head-profile section {
+animation: phone-profile-sect--shift 600ms forwards 2000ms ease-in-out;
+}
+.phone-head-profile div {
+    
+    position: absolute;
+    left: 50%;
+    transform: translate(-50% , 0) scale(1.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc((95svw + 30svh) / 3.5);
+}
+.phone-head-profile div img:first-of-type {
+    width: 100%;
+    filter: invert(1);
+    animation: profile-bg-rotate 8s infinite linear;
+}
+.phone-head-profile div .pfp {
+    width: 50%;
+    position: absolute;
+    border-radius: 50%;
+}
+.phone-head-profile section {
+    position: absolute;
+    left: calc((95svw + 30svh) / 3.5);
+    width: calc(95svw - ((95svw + 30svh) / 3.5));
+    opacity: 0;
+}
+.phone-head-profile section h1 {
+    font-size: calc((100svh + 100svw) / 50);
+    font-family: "MainFont";
+    
+    width: 100%;
+    text-align: start;
+       color: rgb(230, 230, 230);
+  background: linear-gradient(90deg, rgb(230, 230, 230), #e7e7e7, #f8f8f8, rgb(230, 230, 230));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s linear infinite;
+ animation: gradientShift 6s linear infinite;
+}
+.phone-head-profile section h2 {
+    font-size: calc((100svh + 100svw) / 90);
+    letter-spacing: calc((100svh + 100svw) / 500);
+     color: rgb(230, 230, 230);
+  background: linear-gradient(90deg, rgb(230, 230, 230), #e7e7e7, #f8f8f8, rgb(230, 230, 230));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s linear infinite;
+ animation: gradientShift 6s linear infinite;
+    font-family: "OT";
+    min-width: 0;
+    white-space: normal;
+    word-break: normal;
+    
+    text-align: start;
+    width: 100%;
+}
+.phone-projects {
+    position: relative;
+    height: 100svh;
+    width: 100svw;
+    overflow: hidden;
+    background-color: rgb(83, 105, 154 , 1);
+}
+.phone-projects::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    background: linear-gradient(to bottom , rgb(83, 105, 154 , 1) , transparent);
+    
+}
+.phone-proj-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0.4;
+    transition: 400ms;
+    
+}
+.phone-projects--active .phone-proj-bg {
+    opacity: 1;
+}
+.phone-proj-bg::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top , rgb(83, 105, 154) , transparent);
+
+}
+.phone-proj-bg img {
+    width: 100%;
+    height: 100%;
+
+}
+.phone-proj-star-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    z-index: +2;
+    opacity: 0.2;
+    transition: 400ms;
+}
+.phone-body {
+    display: none;
+}
+.phone-projects--active {
+    
+}
+.phone-projects--active .phone-proj-star-bg {
+    opacity: 0.5;
+}
+.phone-proj-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: +2;
+}
+.phone-proj-heading {
+    font-size: calc((100svh + 100svw) / 30);
+    color: rgb(230 , 230 , 230);
+    padding: calc((100svh + 100svw) / 60) 0;
+    opacity: 0;
+    transform: scale(0.8) translate(0 , -15%);
+    transition: 400ms;
+}
+.phone-projects--active .phone-proj-heading {
+    opacity: 1;
+    transform: scale(1) translate(0 , 0%);
+}
+.phone-proj-heading span {
+    font-family: "OT";
+}
+.phone-projs {
+    height: calc(100% - var(---phone-proj-heading--CH));
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: +1;
+    overflow-y: hidden;
+    scroll-snap-type: y mandatory;
+    opacity: 0;
+    transform: scale(0.9) translate(0, 10%);
+    transition: opacity 600ms, transform 600ms, overflow-y 600ms;
+    transition-behavior: allow-discrete;
+}
+.phone-projects--active .phone-projs {
+    transition-delay: 200ms;
+    overflow-y: scroll;
+    opacity: 1;
+    transform: scale(1) translate(0, 0%);
+}
+.phone-project {
+    position: relative;
+    border: calc((var(---phone-projs--CH) + 80dvw) / 70) solid rgb(230 , 230 , 230);
+    height: fit-content;
+    
+    transform: scale(0.980);
+    margin-bottom: 1svh;
+    max-height: calc(95%);
+    width: calc(100% - ((var(---phone-projs--CH) + 80dvw) / 35));
+background-color: rgb(230 , 230 , 230);
+border-radius: 25px;
+box-sizing: content-box;
+overflow-y: scroll;
+scroll-snap-align: start;
+transition: 200ms;
+opacity: 0.4;
+
+}
+._phone-project--active {
+    
+    transform: scale(1) !important;
+    opacity: 1;
+}
+.phone-project-hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+.phone-project-head {
+    width: 100%;
+    height: calc((var(---phone-projs--CH) * 0.95) * 0.20);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 12.5px;
+}
+.phone-project-head img {
+    width: 100%;
+    flex-shrink: 0 !important;
+    min-height: 100%;
+
+}
+.phone-project-heading {
+    font-size: calc((100svh + 100svw) / 70);
+    width: 100%;
+    text-align: center;
+    padding: calc((100svh + 100svw) / 140) 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #585858;
+font-weight: 700;
+}
+.phone-project p {
+    max-height:
+     calc((((var(---phone-projs--CH) * 0.94)) - 
+     (((var(---phone-projs--CH) * 0.95) * 0.20) + ((100svh + 100svw) / 70) + ((100svh + 100svw) / 70))) - ((var(---phone-projs--CH) * 0.94) * 0.09));
+     margin-bottom: calc((var(---phone-projs--CH) * 0.94) * 0.01);
+     width: 100%;
+     word-break: break-word;
+     overflow-y: scroll;
+     display: inline-block;
+     font-size: calc((100svh + 100svw) / 100);
+     color: #3f3f3f;
+}
+.phone-project a {
+    margin-top: auto;
+    background-color: rgb(83, 105, 154 , 1);
+    height: calc((var(---phone-projs--CH) * 0.94) * 0.08);
+    display: flex;
+    width: 100%;
+    border-radius: 12.5px;
+    align-items: center;
+    justify-content: center;
+    font-size: calc((((var(---phone-projs--CH) * 0.94) * 0.08) + 80svw) / 25);
+    color: white;
+}
+.phone-about-me {
+    position: relative;
+    height: fit-content;
+    min-height: 100svh;
+    width: 100svw;
+    display: flex;
+    flex-direction: column;
+ 
+    
+}
+.phone-about-bg {
+    position: absolute;
+    inset: 0;
+    z-index: +1;
+}
+._phone-about--active {
+    
+}
+.phone-about-profile {
+    position: absolute;
+    top: 50svh;
+    width: 100%;
+    transform: translate(0 , -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: +2;
+transition: 600ms ease-in-out;    
+}
+.phone-about-heading {
+    max-width: 100%;
+    text-align: center;
+    font-size: calc((100svh + 100svw) / 30);
+    padding: calc((100svh + 100svw) / 60) 0;
+    color: rgb(230 , 230 , 230);
+    opacity: 0;
+    transition: 400ms ease-in-out;
+    transform: scale(0.9) translate(0 , 50%);
+}
+.phone-about-heading span {
+    font-family: "OT";
+}
+.phone-about-profile div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(80svw);
+    transform: scale(0.8);
+    transition: 600ms ease-in-out;
+}
+.phone-about-profile div img:first-of-type {
+    width: 100%;
+    filter: invert(1);
+    animation: profile-bg-rotate 8s infinite linear;
+}
+.phone-about-profile div .pfp {
+    position: absolute;
+    border-radius: 50%;
+    width: 50%;
+    opacity: 0;
+    transition: 600ms ease-in-out;
+    transform: scale(0.9) rotate(10deg);
+}
+._phone-about--active .phone-about-profile {
+    transition-delay: 400ms;
+    
+top: 0;
+transform: translate(0 , 0%);
+}
+._phone-about--active div {
+    transition-delay: 400ms;
+transform: scale(1);
+}
+._phone-about--active div .pfp {
+    transition-delay: 400ms;
+opacity: 1;
+transform: scale(1) rotate(0deg);
+}
+._phone-about--active .phone-about-heading {
+    transition-delay: 600ms;
+transform: scale(1) translate(0 , 0%);
+opacity: 1;
+}
+.phone-about-spacer {
+    height: var(---phone-about-profile--CH);
+    width: 100%;
+    
+}
+.phone-about-content {
+    width: 100%;
+    position: relative;
+    
+    /* hseight: calc(100% - var(---phone-about-profile--CH) + (((100svh + 100svw) / 30) + ((100svh + 100svw) / 30))); */
+    /* overflow-y: scroll; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: +2;
+    opacity: 0;
+    transform: scale(0.9) translate(0 , -5%);
+    transition: 800ms ease-in-out;
+}
+.phone-about-content div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+._phone-about--active .phone-about-content {
+    transition-delay: 600ms;
+    opacity: 1;
+    transform: scale(1) translate(0 , 0%);
+}
+.phone-about-content h1 {
+       font-size: calc((100svh + 100svw) / 40);
+       color: rgb(210, 210, 210);
+       width: 85%;
+       padding: calc((100svh + 100svw) / 80) 5%;
+       border-bottom: 0.5svh solid rgb(210, 210, 210);
+       border-radius: 2px;
+}
+.phone-about-content h1 span {
+    font-family: "OT";
+}
+.phone-about-content p {
+    width: 90%;
+
+       font-size: calc((100svh + 100svw) / 65);
+       margin-top: calc((100svh + 100svw) / 130);
+       color: rgb(210, 210, 210);
+}
+.phone-contact {
+    position: relative;
+    height: 100svh;
+    width: 100svw;
+    z-index: +2;
+
+}
+.phone-contact--active {
+    
+}
+.phone-contact-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+}
+.phone-contact-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    z-index: +1;
+}
+.phone-contact-star::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    z-index: +1;
+    background-color: rgb(83, 105, 154);
+    opacity: 0.7;
+    transition: 400ms;
+}
+.phone-contact--active .phone-contact-star::after {
+    transition-delay: 200ms;
+    opacity: 0.2;
+}
+.phone-contact-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    
+    background: linear-gradient(to top , rgb(83, 105, 154) , transparent);
+}
+.phone-contact-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100svh;
+    width: 100svw;
+    
+    background: linear-gradient(to bottom , rgb(83, 105, 154) , transparent);
+}
+.phone-contact-bg video {
+    height: 100%;
+    min-width: 100%;
+}
+.phone-contact-heading {
+    position: relative;
+    font-size: calc((100svh + 100svw) / 40);
+    padding: calc((100svh + 100svw) / 60) 0;
+    color: rgb(210 , 210 , 210);
+    width: 100%;
+    text-align: center;
+    z-index: +2;
+    opacity: 0;
+    transform: scale(0.5) translate(0 , -15%);
+    transition: 400ms;
+}
+.phone-contact--active .phone-contact-heading {
+    transition-delay: 200ms;
+    opacity: 1;
+    transform: scale(1) translate(0 , 0%);
+
+}
+.phone-contact-heading span {
+    font-family: "OT";
+}
+.phone-contact-socials {
+    position: relative;
+    z-index: +2;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: calc(60% - var(---phone-contact-heading--CH));
+    height: fit-content;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    align-content: start;
+}
+.phone-contact-socials button {
+    display: flex;
+    align-items: center;
+border: none;
+outline: none;
+color: white;
+background-color: transparent;
+border-radius: 8px;
+margin: calc((100svh + 100svw) / 80);
+overflow: hidden;
+opacity: 0;
+transform: scale(0.8);
+transition: 400ms;
+}
+.phone-contact--active .phone-contact-socials button {
+    transition-delay: 200ms;
+    opacity: 0.6;
+    transform: scale(1);
+}
+.phone-contact-socials button img {
+    width: calc(50svw - ((100svh + 100svw) / 40));
+    
+}
+.phone-contact-other {
+    position: relative;
+    z-index: +2;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: fit-content;
+    max-width: 100%;
+    height: calc((100% - var(---phone-contact-socials--CH)) - (var(---phone-contact-heading--CH) * 2));
+    margin-left: 5svw;
+    margin-top: 9.5svh;
+    
+opacity: 0;
+transform: translate(0 , 5%) scale(0.9);
+transition: 600ms ;
+}
+.phone-contact--active .phone-contact-other {
+    transition-delay: 200ms;
+    opacity: 1;
+    transform: translate(0 , 0%) scale(1);
+
+}
+.phone-contact-other::after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50% , 0);
+    content: "";
+    height: 0.3svh;
+    width: 100%;
+    background-color: rgb(230 , 230 , 230);
+    border-radius: 8px;
+
+}
+.phone-contact-other button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: calc((100svh + 100svw) / 100) 2.5svw;
+    width: calc(90svw - 5svw);
+}
+.phone-contact-other img {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: calc((100svh + 100svw) / 50);
+    filter: invert(0.9);
+}
+.phone-contact-other span {
+    color: rgb(230 , 230 , 230);
+    font-size: calc((100svh + 100svw) / 70);
+    text-indent: 0.5ch;
+}
+.phone-social-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 100dvw;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: +99;
+ opacity: 0;   
+}
+.layout-phone ._social-modal--active {
+    display: flex;
+animation: modal--open 400ms forwards;
+}
+.layout-desktop ._social-modal--active {
+    display: flex;
+animation: modal--open 400ms forwards;
+}
+.layout-phone ._social-modal--deactive {
+
+    animation: modal--close 400ms forwards;
+    
+}
+.layout-desktop ._social-modal--deactive {
+
+    animation: modal--close 400ms forwards;
+    
+}
+@keyframes modal--open {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes modal--close {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+        
+    }
+}
+.phone-contact-socials button modalhidden {
+    display: none;
+}
+.phone-social-modal .modal {
+    --padding: calc((100svh + 100svw) / 80);
+    min-height: calc(50% - (var(--padding) * 3));
+    max-height: calc(70% - (var(--padding) * 3));
+    width: calc(100% - (var(--padding) * 3));
+    background-color: white;
+    padding: var(--padding);
+    border-radius: 8px;
+    overflow-y: scroll;
+}
+.phone-social-modal-head {
+    width: 100%;
+    height: 10svh;
+    
+    display: flex;
+    align-items: center;
+}
+.phone-social-modal-head img {
+    width: 50%;
+    max-height: 10svh;
+    border-radius: 8px;
+
+}
+.phone-social-modal .modal p {
+    margin-top: 1svh;
+    color: #646464;
+    font-size: calc((100svh + 100svw) / 70);
+    font-weight: 600;
+}
+.phone-social-modal .modal p a{
+    
+    color: #1273c4;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+.phone-social-modal .modal p a svg{
+    
+   fill: #1273c4;
+    width: calc((100svh + 100svw) / 70);
+    margin-right: 0.3ch;
+}
+/* .phone-social-modal .modal p a svg path{
+    fill: currentColor;
+} */
+ .phone-image-viewer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: var(---page--CH);
+    width: var(---page--CW);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: +99;
+    opacity: 0;
+ }
+ .phone-image-viewer::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    height: 100%;
+    width: 100%;
+    
+    background: linear-gradient(to top , rgb(83, 105, 154 , 1) , transparent);
+ }
+ .phone-image-viewer::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    height: 100%;
+    width: 100%;
+    
+    background: linear-gradient(to bottom , rgb(83, 105, 154 , 1) , transparent);
+ }
+ .phone-image-viewer img {
+    --padding: calc((100svh + 100svw) / 150);
+    width: calc(100svw - (var(--padding) * 4));
+    max-height: calc(80svh - (var(--padding) * 3));
+    padding: var(--padding);
+    background-color: white;
+    border-radius: 8px;
+    z-index: +2;
+ }
+ .phone-copy-notification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50% , -15%) scale(0);
+    z-index: +999999999999999;
+    width: fit-content;
+    padding: calc((100svh + 100svh) / 150);
+    background-color: rgb(30, 219, 140);
+    
+    border-radius: 8px;
+    padding-bottom: calc(((100svh + 100svh) / 150) + 1svh);
+    transition: 600ms , background-color 600ms 600ms;
+}
+._copy-notification--fail {
+    background-color: #9c0d0d !important;
+}
+._copy-notification--fail::after {
+    background-color: #680c0c !important;
+}
+.layout-phone ._copy-notification--active {
+    opacity: 1;
+    background-color: rgb(17, 170, 106);
+    transform: translate(-50% , 2svw) scale(1);
+ } 
+.phone-copy-notification div {
+    position: absolute;
+    left: calc((100svh + 100svh) / 150);
+    bottom: 0.5svh;
+    height: 0.5svh;
+width: calc(100% - ((100svh + 100svh) / 75));
+background-color: white;
+border-radius: 10px;
+
+z-index: +1;
+}
+.phone-copy-notification::after {
+    content: "";
+    position: absolute;
+    left: calc((100svh + 100svh) / 150);
+    bottom: 0.5svh;
+    height: 0.5svh;
+width: calc(100% - ((100svh + 100svh) / 75));
+background-color: rgb(12, 145, 89);
+border-radius: 10px;
+
+}
+@keyframes notificationBar {
+ to {
+    width: 0;
+ }
+}
+
+.phone-copy-notification h1 {
+    width: fit-content;
+    width: max-content;
+    max-height: calc(30svh - ((100svh + 100svh) / 75));
+     width: calc(96svw - ((100svh + 100svh) / 75));
+     transition: 400ms;
+     font-size: calc((100svh + 100svw) / 80);
+     word-break: normal;
+white-space: normal;
+overflow-x: hidden;
+overflow-y: scroll;
+color: white;
+ }
+ .pc-notification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50% , -15%) scale(0);
+    z-index: +999999999999999999999999999999999999999999999999999999999999999999999;
+    --padd: calc((var(---page--CH) + var(---page--CW)) / 150);
+padding: var(--padd);
+background-color: rgb(31, 117, 81);
+border-radius: 10px;
+padding-bottom: calc(var(--padd) + (var(---page--CH) * 0.010));
+transition: 600ms , background-color 400ms 400ms;
+}
+.layout-desktop ._copy-notification--active {
+    
+    background-color: rgb(17, 170, 106);
+    transform: translate(-50% , calc((var(---page--CH) * 0.010))) scale(1);
+    opacity: 1;
+ }
+
+ .pc-notification h1 {
+    width: max-content;
+    max-width: calc(var(---page--CW) - (var(--padd) * 4));
+    min-width: calc((var(---page--CW) * 0.30) - (var(--padd) * 4));
+    max-height: calc((var(---page--CH) * 0.25));
+    font-size: calc(var(--padd) * 1.3);
+    color: white;
+ }
+ .pc-notification div {
+    position: absolute;
+    bottom: calc(var(---page--CH) * 0.010);
+    background-color: white;
+    left: var(--padd);
+    width: calc(100% - (var(--padd) * 2));
+    height: calc(var(---page--CH) * 0.005);
+    border-radius: 10px;
+    z-index: +1;
+    /* animation: notificationBar 8s forwards linear; */
+ }
+ .pc-notification::after {
+    content: "";
+    position: absolute;
+
+    bottom: calc(var(---page--CH) * 0.010);
+    background-color: rgb(15, 119, 76);
+    left: var(--padd);
+    width: calc(100% - (var(--padd) * 2));
+    height: calc(var(---page--CH) * 0.005);
+    border-radius: 10px;
+ }
+ 
+.layout-desktop ._copy-notification--fail {
+    background-color: #680c0c;
+}
+.layout-desktop ._copy-notification--fail::after {
+    background-color: #9c0d0d;
+}
+
     </style>
 </head>
 <body class="page">
     <section class="___layout layout-desktop @page-layout" data-layout="desktop">
-        <section class="pc-project-image-view">
+        <section class="pc-notification _copy-notification">
+            <h1 class="_message">Copied email to clipboard </h1>
+            <div class="_progress"></div>
+        </section>
+        <section class="pc-project-image-view _view-image">
             <section class="modal">
 <img src="" alt="">
             </section>
         </section>
-        <section class="pc-project-social-view">
-            <section class="modal">
-                <section class="social-heading">
-                    <img src="" alt="" srcset="">
-                    <h1 class="_social-name"></h1>
-                </section>
-                <p>
-                    
-                </p>
+        <section class="pc-project-social-view _social-modal">
+            <section class="modal _modal">
+                
             </section>
         </section>
         <section class="pc-head">
@@ -1317,11 +2387,548 @@ opacity: 1;
     Frontend Freelancer</h2></section>
             </section>
         </section>
+        <section class="pc-body-b">
+            <section class="pc-about pc-projects">
+<section class="pc-projects-star-bg"></section>
+            <section class="pc-projects-bg">
+                <img src="./projects.png" alt="">
+            </section>
+            <section class="pc-projects-content">
+<h1 class="pc-projects-heading"><span>Projects</span></h1>
+<section class="pc-projects-container">
+    <section class="pc-project _project">
+<section class="pc-project-head _preview-project-image">
+    <img src="./nothing-figma.png" alt="">
+</section>
+<section class="pc-project-body">
+
+    <h1 class="pc-project-name">Nothing Website Clone</h1>
+    <p>
+        This is landing page of Nothing. It’s a reimagined version of the Nothing Phone brand’s landing page, showcasing how I would design a website for Nothing if I were given the opportunity.
+
+    </p>
+</section>
+<a href=""><span>Visit</span></a>
+</section>
+<section class="pc-project  _project">
+<section class="pc-project-head _preview-project-image">
+    <img src="./unify-figma.png" alt="">
+</section>
+<section class="pc-project-body">
+
+    <h1 class="pc-project-name">Unify Chat Website</h1>
+    <p>
+This is a landing page from one of my side projects. 
+It’s presented as an example of my web design style.
+ The links on this page are intentionally non-functional, as it’s meant to showcase the overall design and layout I can create for your website.
+
+
+
+
+    </p>
+</section>
+<a href=""><span>Visit</span></a>
+</section>
+<section class="pc-project _project">
+<section class="pc-project-head _preview-project-image">
+    <img src="./niot-figma.png" alt="">
+</section>
+<section class="pc-project-body">
+
+    <h1 class="pc-project-name">Backend Developer Portfolio Website</h1>
+    <p>
+        This is another example of my web design work. It showcases what a portfolio website designed by me could look like for you.
+
+Alternatively, this page itself is also a showcase of my web design skills.
+
+    </p>
+</section>
+<a href=""><span>Visit</span></a>
+</section>
+
+
+
+
+            </section>            
+</section>
+            
+        </section>
+        
+
+         <section class="pc-about-me">
+            <section class="pc-about-do">
+<h1 class="pc-do-heading">
+    <span>What I do</span>
+</h1>
+<p>
+  
+ • I build clean, good-looking frontend websites for people who want to 
+    showcase their work, including portfolios, personal pages, project showcases, 
+    resumes, or simple one page profiles about you.
+    
+    <br>
+    <br>
+   • These are pure frontend sites, built with HTML, CSS, and JavaScript 
+    only. No backend, no database, no server side complexity. Just a fast, 
+    lightweight site that loads instantly and looks great on any device.
+    <br>
+    <br>
+   • Perfect for anyone who needs a single page (or a few pages) containing 
+    your details, work, links, and information: the kind of site you'd 
+    share with a client, recruiter, or on social media.
+    <br>
+    <br>
+  •  Sites are hosted on GitHub Pages, and if you'd like, I can 
+    also set up a custom domain so it's your own branded link instead of 
+    a github.io URL.
+    <br>
+    <br>
+  •  If you're unsure whether your website idea can be built by me, 
+    feel free to DM me on my social media.
+</p>
+            </section>
+            <section class="pc-about-profile">
+                <h1 class="pc-about-heading">
+                    <span>About Me</span>
+                </h1>
+
+                <section class="pc-about-profile-img">
+                    <img src="./vcimage-removebg-preview.png" alt="">
+                    <img class="pfp" src="./pfp.jpg" alt="">
+                </section>
+            </section>
+            <section class="pc-about-i-am">
+                <h1 class="pc-i-am-heading">
+    <span>Who I am</span>
+</h1>
+<p>
+• I'm VAS, <span class="_age-value">18</span> years old, originally from Scotland and currently based in India. <br> <br>
+ I know HTML, CSS, JavaScript, C#, and full stack development, but for now I only offer frontend based websites with no backend, no server, and no database.
+<br>
+<br>
+ I have 5 years of experience in overall programming: 3 years of HTML, CSS, and JavaScript, and 2 years of .NET Core web development.
+<br>
+<br>
+I also create assets for the websites I make, such as icons, logos, and a bit of photo editing.
+
+
+
+
+
+</p>
+            </section>
+        </section>
+        <section class="pc-contact-me">
+            <section class="pc-contact-video">
+<video muted loop playsinline>
+  <source src="./[Drone Freestyle] Mountain Landscape With Snow _ Free Stock Footage _ Creative Common Video.mp4" type="video/mp4">
+</video>
+            </section>
+            <section class="pc-contact-content">
+<h1 class="pc-contact-heading">
+    <span>Contact Me</span>
+</h1>
+<section class="pc-contact-items">
+
+
+<section class="pc-contact-medias">
+<button class="discord _media--discord _social-trigger">
+    <modalhidden>
+        <section class="social-heading">
+                    <img src="./disc.png" alt="" srcset="">
+                    <h1 class="_social-name" style="color: rgb(77, 96, 169);">Discord</h1>
+                </section>
+                <p> <span style="cursor: pointer;" class="_copy-value" data-message="Copied discord username" data-value="vancofnan">Username: vancof</span></p>
+            </modalhidden>
+    <div>
+
+        <img src="./discord.png" alt="">
+    </div>
+    <h1>Discord</h1>
+</button>
+<button class="instagram _media--insta _social-trigger">
+    <modalhidden>
+        <section class="social-heading">
+                    <img src="./instacrop.png" alt="" srcset="">
+                    <h1 class="_social-name" style="
+                       color: #ad074c;
+  background: linear-gradient(90deg, #9c0d0d, #ad0b0b, #bfc219, #d60707);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s linear infinite;
+ animation: gradientShift 6s linear infinite;">Instagram</h1>
+                </section>
+                <p>Username: vancof</p>
+            </modalhidden>
+    <div>
+
+        <img src="./instagram.png" alt="">
+    </div>
+    <h1>Instagram</h1>
+</button>
+<button class="github _media--git _social-trigger">
+    <modalhidden>
+        <section class="social-heading">
+                    <img src="./github.svg" alt="" srcset="">
+                    <h1 class="_social-name" style="
+                       color: rgb(34, 34, 36) ;">Github</h1>
+                </section>
+                <p>Username: vancofnan</p>
+            </modalhidden>
+    <div>
+
+        <img src="./github.svg" alt="">
+    </div>
+    <h1>Github</h1>
+</button>
+<button class="facebook _social-trigger">
+      <modalhidden>
+        <section class="social-heading">
+                    <img src="./linname.png" 
+                    alt="" style="width: 15dvw; border-radius: 8px; margin-bottom: 1dvh;" srcset="">
+            
+                </section>
+                <p>Username: vancofnan</p>
+            </modalhidden>
+    <div>
+
+        
+    </div>
+    <h1>LinkedIn</h1>
+</button>
+<button class="facebook facebook _social-trigger">
+    <modalhidden>
+        <section class="social-heading">
+                    <img src="./naukriname.png" 
+                    alt="" style="width: 15dvw; border-radius: 8px; margin-bottom: 1dvh;" srcset="">
+            
+                </section>
+                <p>Username: vancofnan</p>
+            </modalhidden>
+    <div>
+
+        <img src="./nauk.png" style="filter: invert(0);" alt="">
+    </div>
+    <h1>Naukri</h1>
+</button>
+
+
+</section>
+<section class="pc-contact-other">
+    <button class="_copy-value" data-message="Copied Email" data-value="john.doe@example.com">
+        <div>
+            <img src="./envelope-solid-full.svg" alt="">
+        </div>
+        <h1 >john.doe@example.com</h1>
+    </button>
+    <button class="_copy-value" data-value="+91 00000 00000" data-message="Copied Phone Number">
+        <div>
+            <img src="./phone-call-icon.svg" alt="">
+        </div>
+        <h1>+91 00000 00000</h1>
+    </button>
+</section>
+
+</section>
+            </section>
+        </section>
+        </section>
 
    
     </section>
     <section class="___layout layout-phone @page-layout" data-layout="phone">
-        Phone
+        <section class="phone-copy-notification _copy-notification ">
+            <h1 class="_message">Copied Email address to clipboard  Copied Email address to clipboard </h1>
+            <div class="_progress"></div>
+        </section>
+       <section class="phone-social-modal _social-modal">
+<section class="modal _modal">
+
+</section>
+       </section>
+       <section class="phone-image-viewer _view-image">
+        <img src="./unify-figma.png" alt="">
+       </section>
+        <section class="phone-head">
+            <section class="phone-head-bg"></section>
+            <section class="phone-welcome">
+                <h1 class="phone-p1">Hiya!</h1>
+                <h1 class="phone-p2">I AM  VΔNCØF</h1>
+            </section>
+<section class="phone-hill">
+<img src="./erasebg-transformed.png" alt="">
+</section>
+<section class="phone-head-profile">
+    <div>
+        <img src="./vcimage-removebg-preview.png" alt="" srcset="">
+        <img class="pfp" src="./pfp.jpg" alt="" srcset="">
+    </div>
+    <section>
+        <h1>VΔNCØF</h1>
+        <h2>Frontend Freelancer</h2>
+    </section>
+</section>
+
+        </section>
+        <section class="phone-body">
+
+            <section class="phone-projects">
+                <section class="phone-proj-star-bg">
+            
+
+            </section>
+            <section class="phone-proj-bg">
+                <img src="./phoneproj.jpg" alt="">
+            </section>
+            <section class="phone-proj-container">
+<h1 class="phone-proj-heading">
+    <span>Projects</span>
+</h1>
+<section class="phone-projs">
+<section class="phone-project _project">
+<section class="phone-project-head _preview-project-image ">
+<img src="./nothing-figma.png" alt="">
+</section>
+<h1 class="phone-project-heading">
+    Nothing website reimagined
+</h1>
+<p>
+  This is landing page of Nothing. It’s a reimagined version of the Nothing Phone brand’s landing page, showcasing how I would design a website for Nothing if I were given the opportunity.
+
+</p>
+<a href="">Visit</a>
+</section>
+<section class="phone-project _project">
+<section class="phone-project-head _preview-project-image">
+<img src="./unify-figma.png" alt="">
+</section>
+<h1 class="phone-project-heading">
+    Unify Chat Website
+</h1>
+<p>
+
+This is a landing page from one of my side projects. 
+It’s presented as an example of my web design style.
+ The links on this page are intentionally non-functional, as it’s meant to showcase the overall design and layout I can create for your website.
+
+
+
+
+    
+</p>
+<a href="">Visit</a>
+</section>
+<section class="phone-project _project">
+<section class="phone-project-head _preview-project-image">
+<img src="./niot-figma.png" alt="">
+</section>
+<h1 class="phone-project-heading">
+   Backend Developer Portfolio Website
+</h1>
+<p>
+
+        This is another example of my web design work. It showcases what a portfolio website designed by me could look like for you.
+
+Alternatively, this page itself is also a showcase of my web design skills.
+
+    
+</p>
+<a href="">Visit</a>
+</section>
+<section class="phone-project phone-project-hidden">
+<section class="phone-project-head">
+
+</section>
+<h1 class="phone-project-heading">
+....
+</h1>
+<p>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, perspiciatis repellendus? Debitis.
+</p>
+<a href="">Visit</a>
+</section>
+</section>
+            </section>
+        </section>
+        <section class="phone-about-me">
+            <section class="phone-about-bg">
+
+            </section>
+            <section class="phone-about-spacer">
+
+            </section>
+<section class="phone-about-profile">
+    <h1 class="phone-about-heading">
+        <span>About Me</span>
+    </h1>
+    <div>
+<img src="./vcimage-removebg-preview.png" alt="">
+<img src="./pfp.jpg" alt="" class="pfp">
+    </div>
+</section>
+<section class="phone-about-content">
+    <div class="_phone-about-cont">
+
+    
+    <h1><span>What I do</span></h1>
+ <p>
+  
+ • I build clean, good-looking frontend websites for people who want to 
+    showcase their work, including portfolios, personal pages, project showcases, 
+    resumes, or simple one page profiles about you.
+    
+    <br>
+    <br>
+   • These are pure frontend sites, built with HTML, CSS, and JavaScript 
+    only. No backend, no database, no server side complexity. Just a fast, 
+    lightweight site that loads instantly and looks great on any device.
+    <br>
+    <br>
+   • Perfect for anyone who needs a single page (or a few pages) containing 
+    your details, work, links, and information: the kind of site you'd 
+    share with a client, recruiter, or on social media.
+    <br>
+    <br>
+  •  Sites are hosted on GitHub Pages, and if you'd like, I can 
+    also set up a custom domain so it's your own branded link instead of 
+    a github.io URL.
+    <br>
+    <br>
+  •  If you're unsure whether your website idea can be built by me, 
+    feel free to DM me on my social media.
+</p>
+    <h1><span>Who I am</span></h1>
+<p>
+• I'm VAS, <span class="_age-value">18</span> years old, originally from Scotland and currently based in India. <br> <br>
+ I know HTML, CSS, JavaScript, C#, and full stack development, but for now I only offer frontend based websites with no backend, no server, and no database.
+<br>
+<br>
+ I have 5 years of experience in overall programming: 3 years of HTML, CSS, and JavaScript, and 2 years of .NET Core web development.
+<br>
+<br>
+I also create assets for the websites I make, such as icons, logos, and a bit of photo editing.
+
+
+
+
+
+</p>
+    </div>
+</section>
+        </section>
+<section class="phone-contact">
+    <section class="phone-contact-star">
+        
+    </section>
+<section class="phone-contact-bg">
+    <video muted loop playsinline>
+  <source src="./pre2.mp4" type="video/mp4">
+</video>
+</section>
+<h1 class="phone-contact-heading">
+    <span>Contact Me</span>
+</h1>
+
+<section class="phone-contact-socials">
+    <button class="_social-trigger">
+        <modalhidden>
+<section class="phone-social-modal-head">
+    <img src="./discname.png" alt="" srcset="">
+</section>
+<p>
+    <span style="cursor: pointer;" class="_copy-value" data-message="Copied discord username" data-value="vancofnan">
+
+        Discord Username: vancofnan
+    </span>
+    
+</p>
+        </modalhidden>
+        <img src="./discname.png" alt="">
+        
+    </button>
+    <button class="_social-trigger">
+              <modalhidden>
+<section class="phone-social-modal-head">
+    <img src="./instaname.png" alt="" srcset="">
+</section>
+<p>
+    Instagram id: vancofnan
+    
+</p>
+        </modalhidden>
+        <img src="./instaname.png" alt="">
+        
+    </button>
+    <button class="_social-trigger">
+              <modalhidden>
+<section class="phone-social-modal-head">
+    <img src="./gitname.png" alt="" srcset="">
+</section>
+<p>
+    Github Username: vancofnan
+    
+</p>
+        </modalhidden>
+        <img src="./gitname.png" alt="">
+        
+    </button>
+
+    <button class="_social-trigger">
+              <modalhidden>
+<section class="phone-social-modal-head">
+    <img src="./linname.png" alt="" srcset="">
+</section>
+<p>
+    Linked in name: vancof
+    <br>
+     <a href="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M451.5 160C434.9 160 418.8 164.5 404.7 172.7C388.9 156.7 370.5 143.3 350.2 133.2C378.4 109.2 414.3 96 451.5 96C537.9 96 608 166 608 252.5C608 294 591.5 333.8 562.2 363.1L491.1 434.2C461.8 463.5 422 480 380.5 480C294.1 480 224 410 224 323.5C224 322 224 320.5 224.1 319C224.6 301.3 239.3 287.4 257 287.9C274.7 288.4 288.6 303.1 288.1 320.8C288.1 321.7 288.1 322.6 288.1 323.4C288.1 374.5 329.5 415.9 380.6 415.9C405.1 415.9 428.6 406.2 446 388.8L517.1 317.7C534.4 300.4 544.2 276.8 544.2 252.3C544.2 201.2 502.8 159.8 451.7 159.8zM307.2 237.3C305.3 236.5 303.4 235.4 301.7 234.2C289.1 227.7 274.7 224 259.6 224C235.1 224 211.6 233.7 194.2 251.1L123.1 322.2C105.8 339.5 96 363.1 96 387.6C96 438.7 137.4 480.1 188.5 480.1C205 480.1 221.1 475.7 235.2 467.5C251 483.5 269.4 496.9 289.8 507C261.6 530.9 225.8 544.2 188.5 544.2C102.1 544.2 32 474.2 32 387.7C32 346.2 48.5 306.4 77.8 277.1L148.9 206C178.2 176.7 218 160.2 259.5 160.2C346.1 160.2 416 230.8 416 317.1C416 318.4 416 319.7 416 321C415.6 338.7 400.9 352.6 383.2 352.2C365.5 351.8 351.6 337.1 352 319.4C352 318.6 352 317.9 352 317.1C352 283.4 334 253.8 307.2 237.5z"/></svg>
+
+
+        <span>Profile</span></a>
+    
+</p>
+        </modalhidden>
+        <img src="./linname.png" alt="">
+        
+    </button>
+    <button class="_social-trigger">
+                   <modalhidden>
+<section class="phone-social-modal-head">
+    <img src="./linname.png" alt="" srcset="">
+</section>
+<p>
+   Naukri name: vancof
+    <br>
+    <br>
+     <a href="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M451.5 160C434.9 160 418.8 164.5 404.7 172.7C388.9 156.7 370.5 143.3 350.2 133.2C378.4 109.2 414.3 96 451.5 96C537.9 96 608 166 608 252.5C608 294 591.5 333.8 562.2 363.1L491.1 434.2C461.8 463.5 422 480 380.5 480C294.1 480 224 410 224 323.5C224 322 224 320.5 224.1 319C224.6 301.3 239.3 287.4 257 287.9C274.7 288.4 288.6 303.1 288.1 320.8C288.1 321.7 288.1 322.6 288.1 323.4C288.1 374.5 329.5 415.9 380.6 415.9C405.1 415.9 428.6 406.2 446 388.8L517.1 317.7C534.4 300.4 544.2 276.8 544.2 252.3C544.2 201.2 502.8 159.8 451.7 159.8zM307.2 237.3C305.3 236.5 303.4 235.4 301.7 234.2C289.1 227.7 274.7 224 259.6 224C235.1 224 211.6 233.7 194.2 251.1L123.1 322.2C105.8 339.5 96 363.1 96 387.6C96 438.7 137.4 480.1 188.5 480.1C205 480.1 221.1 475.7 235.2 467.5C251 483.5 269.4 496.9 289.8 507C261.6 530.9 225.8 544.2 188.5 544.2C102.1 544.2 32 474.2 32 387.7C32 346.2 48.5 306.4 77.8 277.1L148.9 206C178.2 176.7 218 160.2 259.5 160.2C346.1 160.2 416 230.8 416 317.1C416 318.4 416 319.7 416 321C415.6 338.7 400.9 352.6 383.2 352.2C365.5 351.8 351.6 337.1 352 319.4C352 318.6 352 317.9 352 317.1C352 283.4 334 253.8 307.2 237.5z"/></svg>
+
+
+        <span>Profile</span></a>
+    
+</p>
+        </modalhidden>
+        <img src="./nauk.png" alt="">
+        
+    </button>
+</section>
+<section class="phone-contact-other">
+    <button class="_copy-value" data-message="Copied Email" data-value="john.doe@example.com">
+        <img src="./maildotru.svg" alt="">
+        <span>jhon.doe@example.com</span>
+    </button>
+    <button class="_copy-value" data-message="Copied Phone Number" data-value="+91 00000 00000">
+        <img src="./phone-call-icon.svg" alt="">
+        <span>+91 00000 00000</span>
+    </button>
+</section>
+</section>
+
+        </section>
+ 
     </section>
 
     <script src="./engine.js" data-sepration="true"></script>
