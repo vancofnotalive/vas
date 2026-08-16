@@ -563,7 +563,7 @@ transition: 400ms;
 
 .pc-project {
     width: calc(100% / 4);
-    
+    height: fit-content;
     max-height: 90%;
     background-color: rgb(138, 160, 206);
     border-radius: 10px;
@@ -598,15 +598,16 @@ transform: scale(0) translate(0 , -10%);
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: calc(var(---pc-projects-container--CH) * 0.250);
+    max-height: calc(var(---pc-projects-container--CH) * 0.250);
     overflow: hidden;
     border-radius: 10px;
     
 }
 .pc-project-head img {
+    border-radius: 10px;
     width: 100%;
     cursor: pointer;
-    min-height: 100%;
+    
 }
 .pc-project-name {
     font-size: calc((var(---pc-projects-container--CH) + var(---pc-projects-container--CW)) / 90);
@@ -714,7 +715,7 @@ transition: opacity 400ms;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     opacity: 0;
     transition: opacity 600ms;
@@ -735,7 +736,7 @@ justify-content: center;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
     align-items: center;
     opacity: 0;
     transition: opacity 600ms;
@@ -745,6 +746,7 @@ justify-content: center;
 
  .pc-do-heading {
     position: relative;
+    margin-top: var(---pc-about-heading--OT);
     font-size: calc(((var(---page--CW) * 0.30) + var(---page--CH)) / 35);
     color: rgb(230, 230, 230);
     padding-top: calc((var(---page--CH) * 0.050));
@@ -774,7 +776,8 @@ justify-content: center;
     width: 90%;
     align-self: center;
     font-size: calc(((var(---page--CW) * 0.30) + var(---page--CH)) / 70);
-    height: var(---pc-about-profile-img--CH);
+    height: calc((var(---pc-about-profile-img--CH) + (var(---pc-about-profile-img--OT) + var(---pc-about-profile-img--OH))) - var(---pc-about-profile-img--OT));
+    
     overflow-y: scroll;
     color: rgb(230, 230, 230);
     transform: scale(0.9) translate(-5% , 0%);
@@ -801,6 +804,7 @@ transition: 600ms;
 
 
  .pc-i-am-heading {
+    
     position: relative;
     font-size: calc(((var(---page--CW) * 0.30) + var(---page--CH)) / 35);
     color: rgb(230, 230, 230);
@@ -812,6 +816,7 @@ transition: 600ms;
     margin-bottom: calc(var(---page--CH) * 0.015);
     ;
     text-align: end;
+    margin-top: var(---pc-about-heading--OT);
 }
 .pc-i-am-heading span {
     font-family: "OT";
@@ -832,7 +837,8 @@ transition: 600ms;
     width: 90%;
     align-self: center;
     font-size: calc(((var(---page--CW) * 0.30) + var(---page--CH)) / 70);
-    height: var(---pc-about-profile-img--CH);
+   height: calc((var(---pc-about-profile-img--CH) + (var(---pc-about-profile-img--OT) + var(---pc-about-profile-img--OH))) - var(---pc-about-profile-img--OT));
+    
     overflow-y: scroll;
     color: rgb(230, 230, 230);
     
@@ -955,7 +961,7 @@ justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
-    max-height: 100%;
+    height: 100%;
    width: 100%;
    display: flex;
    align-items: center;
@@ -963,7 +969,8 @@ justify-content: center;
    overflow: hidden;
 }
 .pc-contact-video video {
-    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
     display: inline-block;
 }
 .pc-contact-video::after {
@@ -1042,12 +1049,12 @@ transition: 600ms;
     opacity: 1;
     transform: translate(0 , 0%) scale(1);
 }
-.pc-contact-medias::after {
+.pc-contact-other::after {
     content: "";
     height: 0%;
     width: calc(var(---page--CW) * 0.0020);
     position: absolute;
-    left: 100%;
+    right: 100%;
     top: 50%;
     transform: translate(0 , -50%);
     background-color: white;
@@ -1067,12 +1074,12 @@ transition: 600ms;
     transition: 600ms;
 }
 .layout-desktop ._contact--active .pc-contact-other {
-    transition-delay: 600ms;
+    transition-delay: 400ms;
     opacity: 1;
     transform: translate(0 , 0%) scale(1);
 }
-.layout-desktop ._contact--active .pc-contact-medias::after {
-    transition-delay: 200ms;
+.layout-desktop ._contact--active .pc-contact-other::after {
+    transition-delay: 400ms;
     height: 100%;
 }
 .pc-contact-other button {
@@ -2404,7 +2411,15 @@ transition: 600ms , background-color 400ms 400ms;
 
     <h1 class="pc-project-name">Nothing Website Clone</h1>
     <p>
-        This is landing page of Nothing. It’s a reimagined version of the Nothing Phone brand’s landing page, showcasing how I would design a website for Nothing if I were given the opportunity.
+     This is an example of my design skills and what I can create for you.
+
+This is not the real Nothing Phone brand website. <br>
+ I built it to showcase what the website could look like if I were designing a website for Nothing.
+
+The links are intentionally not functional because this project is meant to showcase only the design of a single page.
+<br>
+<br>
+All of the projects listed here are examples and previews of what your website could look like if you hired me to build something similar.
 
     </p>
 </section>
@@ -2418,10 +2433,11 @@ transition: 600ms , background-color 400ms 400ms;
 
     <h1 class="pc-project-name">Unify Chat Website</h1>
     <p>
-This is a landing page from one of my side projects. 
-It’s presented as an example of my web design style.
- The links on this page are intentionally non-functional, as it’s meant to showcase the overall design and layout I can create for your website.
+This is Landing page of a fictional company
+named Unify that built a chatting website.
+<br> <br>
 
+The links are intentionally not functional because this project is meant to showcase only the design of a single page.
 
 
 
@@ -2430,16 +2446,20 @@ It’s presented as an example of my web design style.
 <a href=""><span>Visit</span></a>
 </section>
 <section class="pc-project _project">
-<section class="pc-project-head _preview-project-image">
+<section style="background-color: white;" class="pc-project-head _preview-project-image">
     <img src="./niot-figma.png" alt="">
 </section>
 <section class="pc-project-body">
 
     <h1 class="pc-project-name">Backend Developer Portfolio Website</h1>
     <p>
-        This is another example of my web design work. It showcases what a portfolio website designed by me could look like for you.
+     This is an example of a backend developer portfolio website and what it could look like if I designed a website for you.
+     <br>
+     <br>
 
-Alternatively, this page itself is also a showcase of my web design skills.
+Alternatively, this current website itself is another example of my design skills. <br>
+<br>
+All websites I build are fully responsive and work seamlessly on phones, desktops, laptops, and tablets.
 
     </p>
 </section>
@@ -2485,6 +2505,8 @@ Alternatively, this page itself is also a showcase of my web design skills.
     <br>
   •  If you're unsure whether your website idea can be built by me, 
     feel free to DM me on my social media.
+    <br>
+    <br>
 </p>
             </section>
             <section class="pc-about-profile">
@@ -2502,7 +2524,7 @@ Alternatively, this page itself is also a showcase of my web design skills.
     <span>Who I am</span>
 </h1>
 <p>
-• I'm VAS, <span class="_age-value">18</span> years old, originally from Scotland and currently based in India. <br> <br>
+• I'm VAS, <span class="_age-value">18</span> years old, currently based in India. <br> <br>
  I know HTML, CSS, JavaScript, C#, and full stack development, but for now I only offer frontend based websites with no backend, no server, and no database.
 <br>
 <br>
@@ -2692,10 +2714,16 @@ I also create assets for the websites I make, such as icons, logos, and a bit of
 <img src="./nothing-figma.png" alt="">
 </section>
 <h1 class="phone-project-heading">
-    Nothing website reimagined
+    Nothing Website Clone
 </h1>
 <p>
-  This is landing page of Nothing. It’s a reimagined version of the Nothing Phone brand’s landing page, showcasing how I would design a website for Nothing if I were given the opportunity.
+  This is an example of my design skills and what I can create for you.
+
+This is not the real Nothing Phone brand website. I built it to showcase what the website could look like if I were designing a website for Nothing.
+
+The links are intentionally not functional because this project is meant to showcase only the design of a single page.
+
+All of the projects listed here are examples and previews of what your website could look like if you hired me to build something similar.
 
 </p>
 <a href="">Visit</a>
@@ -2708,13 +2736,7 @@ I also create assets for the websites I make, such as icons, logos, and a bit of
     Unify Chat Website
 </h1>
 <p>
-
-This is a landing page from one of my side projects. 
-It’s presented as an example of my web design style.
- The links on this page are intentionally non-functional, as it’s meant to showcase the overall design and layout I can create for your website.
-
-
-
+This is Landing page of a fictional company named Unify that built a chatting website. The links are intentionally not functional because this project is meant to showcase only the design of a single page.
 
     
 </p>
@@ -2729,10 +2751,7 @@ It’s presented as an example of my web design style.
 </h1>
 <p>
 
-        This is another example of my web design work. It showcases what a portfolio website designed by me could look like for you.
-
-Alternatively, this page itself is also a showcase of my web design skills.
-
+    This is an example of a backend developer portfolio website and what it could look like if I designed a website for you. Alternatively, this current website itself is another example of my design skills. All websites I build are fully responsive and work seamlessly on phones, desktops, laptops, and tablets.
     
 </p>
 <a href="">Visit</a>
@@ -2801,7 +2820,7 @@ Alternatively, this page itself is also a showcase of my web design skills.
 </p>
     <h1><span>Who I am</span></h1>
 <p>
-• I'm VAS, <span class="_age-value">18</span> years old, originally from Scotland and currently based in India. <br> <br>
+• I'm VAS, <span class="_age-value">18</span> years old, currently based in India. <br> <br>
  I know HTML, CSS, JavaScript, C#, and full stack development, but for now I only offer frontend based websites with no backend, no server, and no database.
 <br>
 <br>
